@@ -1,0 +1,47 @@
+erDiagram
+    SEDE {
+        int id PK
+        str indirizzo
+        str citta
+    }
+
+    LIBRO {
+        int id PK
+        str titolo
+        date anno_pubblicazione
+        real prezzo_copertina
+    }
+
+    AUTORE {
+        int id PK
+        str nome
+        str cognome
+    }
+
+    ISCRITTO {
+        int id PK
+        str nome
+        str cognome
+    }
+
+    PRESTITO {
+        int id PK
+        int iscritto_id FK
+        int libro_id FK
+        int sede_id FK
+        date data_inizio
+        date data_restituzione
+    }
+
+    EVENTO {
+        int id PK
+        str titolo
+        date data
+        int sede_id FK
+    }
+
+    AUTORE }|--|{ LIBRO: "scrive"
+    ISCRITTO ||--o{ PRESTITO : "effettua"
+    LIBRO ||--o{ PRESTITO : "viene dato in"
+    SEDE ||--o{ PRESTITO : "effettua"
+    SEDE ||--o{ EVENTO : "organizza"
